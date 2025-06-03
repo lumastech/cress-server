@@ -1,0 +1,1 @@
+.text-logo{text-shadow:2px 4px rgb(139,35,236)}.text-logo:hover{text-shadow:-2px -4px rgb(139,35,236)}.blink{color:#c72d7d;animation:1s blink step-end infinite;text-shadow:none;animation:blink 300 ease-in-out 0 infinite}@keyframes blink{0%,to{color:transparent}50%{color:#c72d7d}}
