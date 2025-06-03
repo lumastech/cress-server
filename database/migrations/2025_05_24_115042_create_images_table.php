@@ -24,7 +24,6 @@ return new class extends Migration
             $table->index('ref_id');
             $table->index('type');
             $table->index('status');
-            $table->index('order_column');
         });
     }
 
