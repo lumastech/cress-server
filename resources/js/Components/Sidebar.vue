@@ -2,6 +2,7 @@
     <nav class="w-60 bg-primary-50 h-full overflow-y-auto fixed md:static z-50">
         <div class="navbar flex p-2 border-b border-primary-50">
             <img src="../../assets/images/logo.png" alt="sch" class="h-12">
+            <span class="self-center ml-3 capitalize">{{ $page.props.user.name.split(" ")[0] }}</span>
         </div>
         <div class="nav p-4 text-secondary-800">
             <div class="flex mt-4 mb-2">

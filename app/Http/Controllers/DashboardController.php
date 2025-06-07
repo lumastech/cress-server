@@ -25,49 +25,49 @@ class DashboardController extends Controller
             'systemUptime' => 99.9, // Cache::remember('system_uptime', now()->addHour(), function () {
         //         return 99.8; // $this->calculateSystemUptime(); // Your uptime calculation logic
         // }),
-    ];
-
-    // Alert trends data (last 7 days)
-    $alertTrends = Alert::selectRaw('DATE(created_at) as date, COUNT(*) as count')
-    ->where('created_at', '>=', now()->subDays(7))
-    ->groupBy('date')
-    ->orderBy('date')
-    ->get()
-    ->map(function ($item) {
-        return [
-            'date' => $item->date,
-            'count' => $item->count,
-            'formatted_date' => \Carbon\Carbon::parse($item->date)->format('M d'),
         ];
-    });
 
-    // User growth data (last 30 days)
-    $userGrowth = User::selectRaw('DATE(created_at) as date, COUNT(*) as count')
-        ->where('created_at', '>=', now()->subDays(30))
+        // Alert trends data (last 7 days)
+        $alertTrends = Alert::selectRaw('DATE(created_at) as date, COUNT(*) as count')
+        ->where('created_at', '>=', now()->subDays(7))
         ->groupBy('date')
         ->orderBy('date')
-        ->get();
-
-    // Recent activities
-    $recentActivities = ActivityLog::with(['causer', 'subject'])
-        ->latest()
-        ->take(5)
         ->get()
-        ->map(function ($activity) {
+        ->map(function ($item) {
             return [
-                'description' => $activity->description,
-                'causer' => $activity->causer?->name ?? 'System',
-                'subject' => $activity->subject?->name ?? class_basename($activity->subject_type),
-                'time' => $activity->created_at->diffForHumans(),
-                'icon' => 'info' //$this->getActivityIcon($activity->event),
+                'date' => $item->date,
+                'count' => $item->count,
+                'formatted_date' => \Carbon\Carbon::parse($item->date)->format('M d'),
             ];
         });
 
-    return Inertia::render('Dashboard', [
-        'stats' => $stats,
-        'alertTrends' => $alertTrends,
-        'userGrowth' => $userGrowth,
-        'recentActivities' => $recentActivities,
-    ]);
+        // User growth data (last 30 days)
+        $userGrowth = User::selectRaw('DATE(created_at) as date, COUNT(*) as count')
+            ->where('created_at', '>=', now()->subDays(30))
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+
+        // Recent activities
+        $recentActivities = ActivityLog::with(['causer', 'subject'])
+            ->latest()
+            ->take(5)
+            ->get()
+            ->map(function ($activity) {
+                return [
+                    'description' => $activity->description,
+                    'causer' => $activity->causer?->name ?? 'System',
+                    'subject' => $activity->subject?->name ?? class_basename($activity->subject_type),
+                    'time' => $activity->created_at->diffForHumans(),
+                    'icon' => 'info' //$this->getActivityIcon($activity->event),
+                ];
+            });
+
+        return Inertia::render('Dashboard', [
+            'stats' => $stats,
+            'alertTrends' => $alertTrends,
+            'userGrowth' => $userGrowth,
+            'recentActivities' => $recentActivities,
+        ]);
     }
 }

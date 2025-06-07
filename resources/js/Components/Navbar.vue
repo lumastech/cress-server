@@ -31,7 +31,7 @@
                 </Link>
 
                 <img id="dropdownMenuButton" data-dropdown-toggle="dropdownMenu"
-                    src="https://a7sas.net/wp-content/uploads/2019/07/4060.jpeg" class="w-9 h-9 rounded-full shadow-lg"
+                    :src="$page.props.user.profile_photo_url" class="w-9 h-9 rounded-full shadow-lg object-cover"
                     @click="dropDownOpen = !dropDownOpen">
                 <!-- Dropdown menu -->
                 <div id="dropdownMenu"
@@ -49,7 +49,7 @@
                             <i class="fa-solid w-7 fa-square-binary"></i> API Tokens
                             </Link>
                         </li>
-                
+
                         <li>
                             <Link :href="route('profile.show')"
                                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">

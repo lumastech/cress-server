@@ -107,7 +107,7 @@
                             </td>
                             <th scope="row"
                                 class="flex items-center px-4 py-1 text-gray-900 whitespace-nowrap dark:text-white">
-                                <img class="w-10 h-10 rounded-full" :src="user.profile_photo_url" :alt="user.name">
+                                <img class="w-10 h-10 rounded-full object-cover" :src="user.profile_photo_url" :alt="user.name">
                                 <div class="ps-3">
                                     <div class="text-base font-semibold">{{ user.name }}</div>
                                     <div class="font-normal text-gray-500">{{ user.email }}</div>
