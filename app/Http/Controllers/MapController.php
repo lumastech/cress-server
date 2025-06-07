@@ -26,7 +26,7 @@ class MapController extends Controller
             ->whereNotNull(['lat', 'lng'])
             ->orderBy('created_at', 'desc')
             ->limit(100)
-            ->get(['lat', 'lng', 'created_at', 'severity']);
+            ->get(['lat', 'lng', 'created_at', 'status']);
 
         // Calculate default center (average of all points or fallback to a known location)
         $defaultCenter = $this->calculateDefaultCenter($initialAlerts, $initialIncidents);

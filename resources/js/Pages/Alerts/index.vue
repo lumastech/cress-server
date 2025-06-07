@@ -80,9 +80,7 @@
                                 <div class="text-sm font-medium text-gray-900">{{ alert.name }}</div>
                                 <div class="text-sm text-gray-500">{{ alert.email }}</div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">{{ alert.phone }}</div>
-                            </td>
+
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" :class="{
                                 'bg-yellow-100 text-yellow-800': alert.status === 'pending',
@@ -207,7 +205,6 @@ const props = defineProps({
 
 const headers = [
     { label: 'User', key: 'name', sortable: true },
-    { label: 'Phone', key: 'phone', sortable: false },
     { label: 'Status', key: 'status', sortable: true },
     { label: 'Initiated', key: 'initiated_at', sortable: true },
     { label: 'Location', key: 'lat', sortable: false }

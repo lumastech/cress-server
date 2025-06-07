@@ -18,9 +18,7 @@ class AlertController extends Controller
 
         // Search filter
         if ($request->has('search')) {
-            $query->where('name', 'like', '%'.$request->search.'%')
-                  ->orWhere('email', 'like', '%'.$request->search.'%')
-                  ->orWhere('phone', 'like', '%'.$request->search.'%');
+            $query->where('name', 'like', '%' . $request->search . '%');
         }
 
         // Status filter
