@@ -1,24 +1,10 @@
 <template>
-    <div class="sticky top-0 z-40">
-        <div class="w-full px-6 flex items-center justify-between">
-
+    <div class="sticky top-0 z-40 inline">
+        <div class="w-full pr-4 flex items-center justify-between">
             <!-- left navbar -->
             <div class="flex">
-
-                <!-- mobile hamburger -->
-                <div class="inline-block hidden flex items-center mr-4">
-                    <button class="hover:text-blue-500 hover:border-white focus:outline-none navbar-burger"
-                        @click="navShow = !navShow" :class="{ 'hidden': navShow }">
-                        <svg class="h-5 w-5" v-bind:style="{ fill: 'black' }" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <title>Menu</title>
-                            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-                        </svg>
-                    </button>
-                </div>
-
                 <!-- search bar -->
-                <div class="relative text-gray-600">
+                <div class="relative text-gray-600 self-center">
                     <input type="search" name="serch" placeholder="Search products..."
                         class="bg-primary-50 h-10 w-full xl:w-64 px-5 rounded-lg border-primary-400 text-sm focus:outline-none">
                     <button type="submit" class="absolute right-0 top-0 mt-3 mr-4">
@@ -58,6 +44,13 @@
                             </Link>
                         </li>
                         <li>
+                            <Link v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <i class="fa-solid w-7 fa-square-binary"></i> API Tokens
+                            </Link>
+                        </li>
+                
+                        <li>
                             <Link :href="route('profile.show')"
                                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                             <i class="fa-solid w-7 fa-gear"></i> Settings
@@ -87,113 +80,15 @@
         <!-- dropdown menu end -->
 
     </div>
-
-    <div @click="navShow = false"
-        :class="{ 'w-0': !navShow, 'w-full': navShow, 'delay-300': !navShow, 'delay-0': navShow, 'bg-none': !navShow, 'bg-gray-900/70': !user_agent_suport, 'bg-gray-900/10': user_agent_suport }"
-        class="fixed md:hidden bg-primary-50 transition-w duration-0 h-full top-0 left-0 z-50 backdrop-filter backdrop-blur-sm">
-        <Sidebar class="overflow-x-hidden h-full transition-all duration-500 ease-in-out shadow-md w-2/3 md:w-72"
-            :class="{ '-translate-x-full': !navShow }" />
-    </div>
 </template>
 
 <script setup>
 import { Link } from '@inertiajs/vue3';
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 import { initFlowbite } from 'flowbite'
-import Sidebar from './Sidebar.vue';
 
-
-const navShow = ref(false)
-let user_agent_suport = ref(true)
-
-if (navigator.userAgent.search('Chrome') == -1) {
-    user_agent_suport = false
-}
 // initialize components based on data attribute selectors
 onMounted(() => {
     initFlowbite();
 })
 </script>
-
-
-<style>
-.text-logo {
-    text-shadow: 2px 4px rgb(139, 35, 236);
-
-}
-
-.text-logo:hover {
-    text-shadow: -2px -4px rgb(139, 35, 236);
-}
-
-.blink {
-    color: #C72D7D;
-    -webkit-animation: 1s blink step-end infinite;
-    -moz-animation: 1s blink step-end infinite;
-    -ms-animation: 1s blink step-end infinite;
-    -o-animation: 1s blink step-end infinite;
-    animation: 1s blink step-end infinite;
-    text-shadow: none;
-    animation: blink 300 ease-in-out 0 infinite;
-}
-
-@keyframes blink {
-
-    from,
-    to {
-        color: transparent;
-    }
-
-    50% {
-        color: #C72D7D;
-    }
-}
-
-@-moz-keyframes blink {
-
-    from,
-    to {
-        color: transparent;
-    }
-
-    50% {
-        color: #2c3e50;
-    }
-}
-
-@-webkit-keyframes blink {
-
-    from,
-    to {
-        color: transparent;
-    }
-
-    50% {
-        color: #2c3e50;
-    }
-}
-
-@-ms-keyframes blink {
-
-    from,
-    to {
-        color: transparent;
-    }
-
-    50% {
-        color: #2c3e50;
-    }
-}
-
-@-o-keyframes blink {
-
-    from,
-    to {
-        color: transparent;
-    }
-
-    50% {
-        color: #2c3e50;
-    }
-}
-</style>

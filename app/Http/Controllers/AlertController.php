@@ -23,7 +23,9 @@ class AlertController extends Controller
 
         // Status filter
         if ($request->has('status')) {
-            $query->where('status', $request->status);
+            if ($request->status != ''){
+                $query->where('status', $request->status);
+            }
         }
 
         // Date range filter

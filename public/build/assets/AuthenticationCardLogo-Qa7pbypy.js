@@ -1,1 +1,0 @@
-import{_ as r}from"./logo-CL_3b9da.js";import{c as e,o,w as s,a,u as _,S as n}from"./app-qTUligYE.js";const u={__name:"AuthenticationCardLogo",setup(c){return(i,t)=>(o(),e(_(n),{href:"/"},{default:s(()=>t[0]||(t[0]=[a("div",null,[a("img",{src:r,alt:"sch"})],-1)])),_:1}))}};export{u as _};

@@ -186,7 +186,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue';
+import { ref, computed, onMounted, watch, } from 'vue';
 import { router, Head } from '@inertiajs/vue3';
 import Modal from '@/Components/Modal.vue';
 import ConfirmationModal from '@/Components/ConfirmationModal.vue';
@@ -224,7 +224,7 @@ const alertToDelete = ref(null);
 const fetchAlerts = async () => {
     alerts.value.loading = true;
     try {
-        const response = await router.get(route('alerts.index'), {
+        router.get('alerts', {
             status: statusFilter.value,
             search: searchQuery.value,
             sort: sortColumn.value,
@@ -232,10 +232,15 @@ const fetchAlerts = async () => {
             page: alerts.value.current_page
         }, {
             preserveState: true,
-            replace: true
+            replace: true,
+            onSuccess: (response) => {
+                alerts.value = response.props.alerts;
+            },
+            onError: (error) => {
+                console.error('Error fetching alerts:', error);
+            }
         });
 
-        alerts.value = response.props.alerts;
     } finally {
         alerts.value.loading = false;
     }
