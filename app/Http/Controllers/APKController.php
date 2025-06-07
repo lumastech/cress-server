@@ -45,7 +45,7 @@ class APKController extends Controller
 
     public function download()
     {
-        $file = File::where('type', 'apk')->first();
+        $file = File::where('type', 'apk')->latest()->first();
         if (!$file) {
             return redirect()->back()->with('error', 'No APK file found.');
         }

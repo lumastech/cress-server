@@ -53,7 +53,7 @@ onBeforeMount(() => {
                     </button>
                     <Navbar class="flex-auto" />
                 </div>
-                <div class="main h-full bg-white md:rounded-tl-2xl p-4 overflow-x-auto pb-24 text-secondary-500">
+                <div class="main h-full bg-white md:rounded-tl-2xl p-4 overflow-y-auto pb-24 text-secondary-500">
                     <slot />
                 </div>
             </main>
