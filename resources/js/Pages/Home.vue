@@ -5,7 +5,7 @@
         <header class="bg-white shadow-md sticky top-0 z-50">
             <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
                 <div class="flex items-center">
-                   <img src="../../assets/images/logo.png" alt="cress" class="w-12">
+                    <img src="../../assets/images/logo.png" alt="cress" class="w-12">
                     <span class="ml-2 hidden md:flex text-sm text-gray-500">Community Safety, Reimagined</span>
                 </div>
                 <div class="space-x-4">
@@ -39,7 +39,7 @@
                                 location sharing, and vital safety information.
                             </p>
                             <div class="flex justify-center items-center space-x-4">
-                                <a href="#download"
+                                <a href="/download-apk"
                                     class="bg-white text-teal-600 md:font-bold md:py-3 md:px-8 py-2 px-4 md:rounded-lg rounded text-sm md:text-lg hover:bg-gray-100 transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
                                     GET CRESS NOW
                                 </a>
@@ -244,7 +244,7 @@
                     Download CRESS today and join a growing community dedicated to faster emergency response and
                     proactive safety in Lusaka.
                 </p>
-                <a href="#"
+                <a href="/download-apk"
                     class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-4 px-10 rounded-lg text-xl transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 inline-flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6 mr-2">

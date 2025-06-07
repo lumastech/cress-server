@@ -43,11 +43,11 @@ class APKController extends Controller
         return redirect()->back()->with('success', 'APK uploaded successfully!');
     }
 
-    public function download($id)
+    public function download()
     {
-        $file = File::findOrFail($id);
-        if ($file->type !== 'apk') {
-            return redirect()->back()->with('error', 'Invalid file type.');
+        $file = File::where('type', 'apk')->first();
+        if (!$file) {
+            return redirect()->back()->with('error', 'No APK file found.');
         }
 
         $filePath = storage_path('app/public/' . $file->file_path);
