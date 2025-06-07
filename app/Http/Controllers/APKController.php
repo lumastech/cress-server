@@ -26,11 +26,12 @@ class APKController extends Controller
         // rename file extension from zip to apk if necessary
         if ($request->file('apk_file')->getClientOriginalExtension() === 'zip') {
             $newFileName = pathinfo($request->file('apk_file')->getClientOriginalName(), PATHINFO_FILENAME) . '.apk';
-           // $request->file('apk_file')->storeAs('apks', $newFileName, 'public');
+            $path = $request->file('apk_file')->storeAs('apks', $newFileName, 'public');
             $request->merge(['apk_file' => $newFileName]);
+        }else{
+            $path = $request->file('apk_file')->store('apks', 'public');
         }
 
-        $path = $request->file('apk_file')->store('apks', 'public');
         $data = [
             'name' => $request->name,
             'ref_id' => '1',
