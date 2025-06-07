@@ -11,8 +11,24 @@ class APKController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:100',
-            'apk_file' => 'required|file|mimes:apk|max:101200', // 100MB max
+            'apk_file' => 'required|file|mimes:apk,zip|max:101200', // 100MB max
         ]);
+
+        // remove old APKs if needed
+        $oldFiles = File::where('type', 'apk')->get();
+        foreach ($oldFiles as $file) {
+            if (Storage::disk('public')->exists($file->file_path)) {
+                Storage::disk('public')->delete($file->file_path);
+            }
+            $file->delete();
+        }
+
+        // rename file extension from zip to apk if necessary
+        if ($request->file('apk_file')->getClientOriginalExtension() === 'zip') {
+            $newFileName = pathinfo($request->file('apk_file')->getClientOriginalName(), PATHINFO_FILENAME) . '.apk';
+           // $request->file('apk_file')->storeAs('apks', $newFileName, 'public');
+            $request->merge(['apk_file' => $newFileName]);
+        }
 
         $path = $request->file('apk_file')->store('apks', 'public');
         $data = [
