@@ -23,6 +23,8 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/download-apk', [APKController::class, 'download'])->name('apk.download');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -51,6 +53,6 @@ Route::middleware([
     Route::get('/api/danger-zones/stats', [MapController::class, 'dangerZonesStats']);
 
     Route::post('/upload-apk', [APKController::class, 'upload'])->name('apk.upload');
-    Route::get('/download-apk', [APKController::class, 'download'])->name('apk.download');
+
 
 });
