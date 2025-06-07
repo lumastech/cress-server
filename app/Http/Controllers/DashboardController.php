@@ -16,6 +16,8 @@ class DashboardController extends Controller
         $stats = [
             'totalUsers' => User::count(),
             'activeAlerts' => Alert::where('status', 'active')
+            ->orWhere('status', 'pending')
+            ->orWhere('status', 'sent')
                 ->where('created_at', '>=', now()->subDay())
                 ->count(),
             'incidentsToday' => Incident::where('created_at', '>=', now()->subDay())

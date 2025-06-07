@@ -9,26 +9,17 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class alertMessage extends Mailable
+class sosMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public $user;
-      public function __construct($user)
+    public function __construct()
     {
-        $this->user = $user;
+        //
     }
-
-    public function build()
-    {
-        return $this->view('emails.sos')
-                    ->with('data', $this->user)
-                    ->subject('Subject');
-    }
-
 
     /**
      * Get the message envelope.
@@ -36,7 +27,7 @@ class alertMessage extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Emergence Message',
+            subject: 'Sos Mail',
         );
     }
 
@@ -46,7 +37,7 @@ class alertMessage extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.alert',
+            view: 'view.name',
         );
     }
 

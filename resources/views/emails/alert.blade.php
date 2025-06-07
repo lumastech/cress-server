@@ -4,72 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emergence message</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f7f7f7;
-            padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-        .content {
-            margin-bottom: 20px;
-        }
-        .field {
-            margin-bottom: 10px;
-        }
-        .field strong {
-            display: inline-block;
-            width: 100px;
-        }
-        .footer {
-            text-align: center;
-            font-size: 12px;
-            color: #777;
-        }
-    </style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Emergence message</h1>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
+    <div class="container" style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+        <div class="header" style="background-color: #e74c3c; padding: 20px; text-align: center;">
+            <h1 style="color: white; margin: 0; font-size: 24px;">Emergency Alert</h1>
         </div>
-        <div class="content">
-            <div class="field">
-                <strong>Name:</strong> {{ $user['name'] }}
+        <div class="content" style="padding: 20px;">
+            <div class="field" style="margin-bottom: 15px;">
+                <strong style="color: #333; display: inline-block; width: 80px;">Name:</strong> {{ $data['name'] }}
             </div>
-            <div class="field">
-                <strong>Email:</strong> {{ $user['email'] }}
+            <div class="field" style="margin-bottom: 15px;">
+                <strong style="color: #333; display: inline-block; width: 80px;">Email:</strong> {{ $data['email'] }}
             </div>
-            <div class="field">
-                <strong>Phone:</strong> {{ $user['phone'] }}
+            <div class="field" style="margin-bottom: 15px;">
+                <strong style="color: #333; display: inline-block; width: 80px;">Phone:</strong> {{ $data['phone'] }}
             </div>
-            <div class="field">
-                <h2>Hi {{$user['sos']['name']}}</h2>
-                <p>{{ $user['sos']['message'] }}</p>
+            <div class="field" style="margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border-left: 4px solid #e74c3c;">
+                <h2 style="color: #e74c3c; margin-top: 0;">URGENT: {{$data['alert']}}</h2>
+                <p style="margin-bottom: 10px;"><strong>LOCATION:</strong> <a href="{{ $data['location'] }}" target="_blank" rel="noopener noreferrer" style="color: #3498db; text-decoration: none;">Open Google Map</a></p>
+                <p style="margin-bottom: 0; color: #333;">{{ $data['message'] }}</p>
             </div>
-            <div class="field">
-                <hr style="border-top:1px; margin:24px 0">
-                <p class="footer">If you have received this message it means {{ $user['name'] }} added you as there Emergence contact person in <em> Community Health Helper App</em> </p>
+            <div class="field" style="margin-top: 30px;">
+                <hr style="border-top: 1px solid #eee; margin: 24px 0;">
+                <p class="footer" style="color: #777; font-size: 14px; line-height: 1.5;">If you have received this message it means {{ $data['name'] }} added you as their emergency contact person in <em style="font-style: italic;">Community Health Helper App</em></p>
             </div>
         </div>
-        <div class="footer">
+        <div class="footer" style="background-color: #f5f5f5; padding: 15px; text-align: center; font-size: 12px; color: #777;">
             &copy; 2025 CRESS. All rights reserved.
         </div>
     </div>

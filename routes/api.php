@@ -5,9 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:sanctum')->get('/profile', [ApiController::class, "getProfile"]);
 
 Route::prefix('auth')->group(function () {
     Route::get("/token/verify", [ApiController::class, "tokenVerify"])->middleware('auth:sanctum');
@@ -31,6 +29,7 @@ Route::middleware('auth:sanctum')->prefix('alerts')->group(function () {
     Route::post('/', [ApiController::class, 'createAlert']);
     Route::put('/{id}', [ApiController::class, 'updateAlert']);
     Route::delete('/{id}', [ApiController::class, 'deleteAlert']);
+    Route::post('/send', [ApiController::class, 'sendAlert']);
 });
 
 // Center Routes
