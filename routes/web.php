@@ -29,7 +29,7 @@ Route::get('/privacy-policy', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name("policy.show");
 
 Route::get('/download-apk', [APKController::class, 'download'])->name('apk.download');
 

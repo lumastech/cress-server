@@ -189,6 +189,10 @@ class ApiController extends Controller
         }
 
         $contacts = Contact::all();
+        if (count($contacts) == 0) {
+            return $this->error("No contacts found to send the alert to.", 403);
+        }
+
         foreach($contacts as $contact){
             if (!Mail::to($contact->email)->send(new alertMessage($alert))){
                 return $this->error("We are so sory!, But something went wrong and we could not send your message!");
@@ -214,7 +218,6 @@ class ApiController extends Controller
     }
 
     public function createAlert(Request $request) {
-
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'message' => 'nullable|string',
@@ -224,8 +227,6 @@ class ApiController extends Controller
             'accuracy' => 'nullable|numeric'
         ]);
 
-
-
         if ($validator->fails()) {
             return ['success'=>false, 'data'=>$validator->errors()];
         }
@@ -233,6 +234,19 @@ class ApiController extends Controller
         $data = $validator->validated();
         $data['user_id'] = auth()->user()->id;
         $alert = Alert::create($data);
+
+        $incident = [
+            'user_id' => auth()->user()->id,
+            'name' => $data['name'],
+            'type' => 'Alert',
+            'area' => $data['area'] ?? 'Unknown',
+            'details' => 'Anonymous alert ',
+            'lat' => $data['lat'] ?? null,
+            'lng' => $data['lng'] ?? null,
+        ];
+
+        Incident::create($incident);
+
         return ['success'=>true, 'data'=>$alert];
     }
 

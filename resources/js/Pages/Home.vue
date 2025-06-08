@@ -259,19 +259,15 @@
 
         <footer class="bg-gray-800 text-gray-300 py-12">
             <div class="container mx-auto px-6 text-center">
-                <div class="mb-4">
+                <div class="mb-4 flex items-center justify-center">
                     <div class="inline-block bg-gray-700 p-2 rounded-lg mr-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-6 h-6 text-teal-400">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                        </svg>
+                        <img src="../../assets/images/logo.png" alt="cress" class="w-12">
                     </div>
                     <span class="text-xl font-semibold">CRESS</span>
                 </div>
                 <div class="space-x-6 mb-4">
-                    <a href="#" class="hover:text-teal-400 transition duration-300">Privacy Policy</a>
-                    <a href="#" class="hover:text-teal-400 transition duration-300">Terms of Service</a>
+                    <Link href="/privacy-policy" class="hover:text-teal-400 transition duration-300">Privacy Policy</Link>
+                    <Link href="/privacy-policy" class="hover:text-teal-400 transition duration-300">Terms of Service</Link>
                     <a href="#" class="hover:text-teal-400 transition duration-300">Contact Us (Hypothetical)</a>
                 </div>
                 <p class="text-sm">&copy; {{ new Date().getFullYear() }} CRESS Project. All rights reserved.</p>
