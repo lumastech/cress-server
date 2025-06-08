@@ -22,6 +22,14 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+Route::get('/privacy-policy', function () {
+    return Inertia::render('TermsOfService', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
 
 Route::get('/download-apk', [APKController::class, 'download'])->name('apk.download');
 

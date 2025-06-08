@@ -45,7 +45,7 @@ onBeforeMount(() => {
                 <Sidebar class="transition-all duration-300 ease-in-out"
                     :class="navopen ? 'translate-x-0 w-60' : '-translate-x-full w-0'" />
             </div>
-            <main class="flex-auto">
+            <main class="md:flex-auto h-full">
                 <div class="navbar p-2 h-16 border-primary-50 flex">
                     <button @click="navopen = !navopen"
                         class="inline mr-2 text-teal-700 h-full self-center px-2 hover:bg-primary-100 rounded transition">
@@ -53,7 +53,7 @@ onBeforeMount(() => {
                     </button>
                     <Navbar class="flex-auto" />
                 </div>
-                <div class="main h-full bg-white md:rounded-tl-2xl p-4 overflow-y-auto pb-24 text-secondary-500">
+                <div class="main h-full bg-white md:rounded-tl-2xl p-4 overflow-y-scroll pb-24 text-secondary-500">
                     <slot />
                 </div>
             </main>
