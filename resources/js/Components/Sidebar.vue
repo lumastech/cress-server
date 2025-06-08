@@ -19,12 +19,12 @@
             </Link>
 
 
-            <div class="flex mt-4 mb-2">
+            <div v-if="$page.props.user.role == 'admin'" class="flex mt-4 mb-2">
                 <h1 class="font-bold flex-auto">Administrator</h1>
                 <i class="fa fa-plus self-center"></i>
             </div>
 
-            <Link href="/users"
+            <Link href="/users" v-if="$page.props.user.role == 'admin'"
                 class="flex py-1 px-2 rounded hover:bg-primary-200 bg-primary-100/50 my-1 transition-all">
             <div class="w-9">
                 <i class="fa fa-users text-xl mr-4 text-primary-900 drop-shadow-md"></i>
@@ -83,16 +83,9 @@
     </nav>
 </template>
 
-<script>
+<script setup>
 import { Link } from '@inertiajs/vue3';
-
-
-export default {
-    name: 'Sidebar',
-    components: {
-        Link
-    },
-    computed: {
-    }
-}
+const props = defineProps({
+    user: Object,
+});
 </script>

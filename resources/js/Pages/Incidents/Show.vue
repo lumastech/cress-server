@@ -178,8 +178,9 @@
             <template #content>
                 Are you sure you want to delete this incident report? This action cannot be undone.
             </template>
-            <template #confirmButton>
-                Delete Incident
+            <template #footer>
+                <SecondaryButton @click="showDeleteModal = false">Cancel</SecondaryButton>
+                <DangerButton class="ms-3"  @click="deleteIncident">Delete Incident</DangerButton>
             </template>
         </ConfirmationModal>
     </DashLayout>
@@ -191,6 +192,8 @@ import { Head, Link, router } from '@inertiajs/vue3';
 import { GoogleMap, Marker, InfoWindow } from 'vue3-google-map';
 import DashLayout from '@/Layouts/DashLayout.vue';
 import ConfirmationModal from '@/Components/ConfirmationModal.vue';
+import DangerButton from '@/Components/DangerButton.vue';
+import SecondaryButton from '@/Components/SecondaryButton.vue';
 
 const props = defineProps({
     incident: Object,

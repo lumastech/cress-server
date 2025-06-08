@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 
-const props = defineProps({
+const props = defineProps({ 
     show: {
         type: Boolean,
         default: false,

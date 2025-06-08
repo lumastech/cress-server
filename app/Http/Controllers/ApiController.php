@@ -696,8 +696,6 @@ class ApiController extends Controller
             "address"=> "Plot 2460, Sesheke, Zambia",
             "description"=> "This is health center number 678",
             "is_verified"=> true,
-            "created_at"=> "2025-06-01T15:33:27.000000Z",
-            "updated_at"=> "2025-06-01T15:33:27.000000Z"
         ],
         [
             "id"=> 3679,

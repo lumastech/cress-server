@@ -28,6 +28,11 @@ class AlertController extends Controller
             }
         }
 
+        // User filter
+        if (auth()->user()->role !== 'admin') {
+            $query->where('user_id', auth()->id());
+        }
+
         // Date range filter
         if ($request->has('date_from') && $request->has('date_to')) {
             $query->whereBetween('initiated_at', [

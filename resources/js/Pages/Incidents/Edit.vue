@@ -240,8 +240,8 @@ const form = reactive({
 });
 
 const mapCenter = computed(() => ({
-    lat: parseFloat(form.lat) || 0,
-    lng: parseFloat(form.lng) || 0
+    lat: parseFloat(form.lat) || -15.434393,
+    lng: parseFloat(form.lng) || 28.308563
 }));
 
 const getStatusMarkerIcon = (status) => {

@@ -90,4 +90,9 @@ class User extends Authenticatable
     public function incidentReports() {
         return $this->hasMany(Incident::class);
     }
+
+    public function isAdmin()
+    {
+        return $this->role === "admin";
+    }
 }

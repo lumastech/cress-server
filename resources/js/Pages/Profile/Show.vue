@@ -10,6 +10,7 @@ import DashLayout from '@/Layouts/DashLayout.vue';
 defineProps({
     confirmsTwoFactorAuthentication: Boolean,
     sessions: Array,
+    user: Object,
 });
 
 import { ref } from 'vue'
@@ -61,7 +62,7 @@ function submit() {
                     <DeleteUserForm class="mt-10 sm:mt-0" />
                 </template>
 
-                <div class="max-w-md mx-auto p-6 mt-10 bg-white shadow rounded">
+                <div v-if="user.role == 'admin'" class="max-w-md mx-auto p-6 mt-10 bg-white shadow rounded">
                     <h2 class="text-xl font-bold mb-4">Upload APK</h2>
 
                     <form @submit.prevent="submit">
