@@ -29,9 +29,9 @@ class CenterController extends Controller
             $query->where('status', $request->status);
         }
 
-        if (auth()->user()->role !== 'admin') {
-            $query->where('user_id', auth()->id());
-        }
+        // if (auth()->user()->role !== 'admin') {
+        //     $query->where('user_id', auth()->id());
+        // }
 
         if ($request->has('type')) {
             $query->where('type', $request->type);
