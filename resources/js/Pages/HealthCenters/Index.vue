@@ -167,11 +167,11 @@
                                     class="text-teal-600 hover:text-teal-900 mr-3" title="View">
                                 <i class="fas fa-eye"></i>
                                 </Link>
-                                <Link :href="route('health-centers.edit', center.id)"
+                                <Link v-if="$page.props.user.role == 'admin'" :href="route('health-centers.edit', center.id)"
                                     class="text-blue-600 hover:text-blue-900 mr-3" title="Edit">
                                 <i class="fas fa-edit"></i>
                                 </Link>
-                                <button @click="confirmDelete(center)" class="text-red-600 hover:text-red-900"
+                                <button v-if="$page.props.user.role == 'admin'" @click="confirmDelete(center)" class="text-red-600 hover:text-red-900"
                                     title="Delete">
                                     <i class="fas fa-trash"></i>
                                 </button>
