@@ -13,6 +13,10 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        // if user role is not admin, redirect to dashboard
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->back()->with('error', 'You do not have permission to view activity logs.');
+        }
         // Fetch users from the database
         $users = User::query()
             ->when($request->input('search'), function ($query, $search) {
@@ -30,6 +34,10 @@ class UserController extends Controller
     }
 
     public function updateStatus(Request $request, string $id) {
+        // if user role is not admin, redirect to dashboard
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->back()->with('error', 'You do not have permission to view activity logs.');
+        }
         // Validate the request
         $request->validate([
             'status' => ['required', 'string', 'in:active,inactive,pending,suspended,deleted,rejected'],
@@ -43,6 +51,10 @@ class UserController extends Controller
     }
 
     public function updateRole(Request $request, string $id) {
+        // if user role is not admin, redirect to dashboard
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->back()->with('error', 'You do not have permission to view activity logs.');
+        }
         // Validate the request
         $request->validate([
             'role' => ['required', 'string', 'in:admin,user,moderator'],
@@ -105,6 +117,10 @@ class UserController extends Controller
 
     // search users
     public function search(Request $request) {
+        // if user role is not admin, redirect to dashboard
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->back()->with('error', 'You do not have permission to view activity logs.');
+        }
         // Fetch users from the database
         $users = User::query()
             ->when($request->input('search'), function ($query, $search) {
