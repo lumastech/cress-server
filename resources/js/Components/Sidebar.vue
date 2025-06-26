@@ -60,12 +60,21 @@
             </div>
             <span class="flex-auto">Danger Zones</span>
             </Link>
+
             <Link :href="route('profile.show')"
                 class="flex py-1 px-2 rounded hover:bg-primary-200 bg-primary-100/50 my-1 transition-all">
             <div class="w-9">
                 <i class="fa fa-cog text-xl mr-4 text-primary-900 drop-shadow-md"></i>
             </div>
             <span class="flex-auto">Settings</span>
+            </Link>
+
+            <Link :href="route('activity-logs.index')" v-if="$page.props.user.role == 'admin'"
+                class=" flex py-1 px-2 rounded hover:bg-primary-200 bg-primary-100/50 my-1 transition-all">
+            <div class="w-9">
+                <i class="fa fa-clipboard-list text-xl mr-4 text-primary-900 drop-shadow-md"></i>
+            </div>
+            <span class="flex-auto">Activity Logs</span>
             </Link>
 
             <div class="flex mt-4 mb-2">
