@@ -116,11 +116,17 @@
                                                     class="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                                 Approve</Link>
                                             </li>
-                                            <li>
-                                                <Link :href="`/users/${user.id}/status`" method="post"
-                                                    :data="{ status: 'rejected' }"
+                                            <li v-if="user.role !== 'admin'">
+                                                <Link :href="`/users/${user.id}/role`" method="post"
+                                                    :data="{ role: 'admin' }"
                                                     class="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                                Reject</Link>
+                                                Make Admin</Link>
+                                            </li>
+                                            <li v-if="user.role === 'admin'">
+                                                <Link :href="`/users/${user.id}/role`" method="post"
+                                                    :data="{ role: 'user' }"
+                                                    class="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                                Remove Admin</Link>
                                             </li>
                                             <li>
                                                 <Link :href="`/users/${user.id}/status`" method="post"
