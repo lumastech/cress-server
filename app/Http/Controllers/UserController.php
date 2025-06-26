@@ -15,7 +15,7 @@ class UserController extends Controller
     {
         // if user role is not admin, redirect to dashboard
         if (auth()->user()->role !== 'admin') {
-            return redirect()->back()->with('error', 'You do not have permission to view activity logs.');
+            return redirect()->route('dashboard')->with('error', 'You do not have permission to view activity logs.');
         }
         // Fetch users from the database
         $users = User::query()
@@ -36,7 +36,7 @@ class UserController extends Controller
     public function updateStatus(Request $request, string $id) {
         // if user role is not admin, redirect to dashboard
         if (auth()->user()->role !== 'admin') {
-            return redirect()->back()->with('error', 'You do not have permission to view activity logs.');
+            return redirect()->route('dashboard')->with('error', 'You do not have permission to view activity logs.');
         }
         // Validate the request
         $request->validate([
@@ -53,7 +53,7 @@ class UserController extends Controller
     public function updateRole(Request $request, string $id) {
         // if user role is not admin, redirect to dashboard
         if (auth()->user()->role !== 'admin') {
-            return redirect()->back()->with('error', 'You do not have permission to view activity logs.');
+            return redirect()->route('dashboard')->with('error', 'You do not have permission to view activity logs.');
         }
         // Validate the request
         $request->validate([
@@ -119,7 +119,7 @@ class UserController extends Controller
     public function search(Request $request) {
         // if user role is not admin, redirect to dashboard
         if (auth()->user()->role !== 'admin') {
-            return redirect()->back()->with('error', 'You do not have permission to view activity logs.');
+            return redirect()->route('dashboard')->with('error', 'You do not have permission to view activity logs.');
         }
         // Fetch users from the database
         $users = User::query()
