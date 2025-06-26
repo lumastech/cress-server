@@ -3,18 +3,50 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ActivityLog;
+use Inertia\Inertia;
 
 class ActivityLogController extends Controller
 {
-    //// Get all activities
-// $activities = ActivityLog::latest()->paginate(20);
 
-// // Get activities for a specific user
-// $userActivities = ActivityLog::causedBy($user)->get();
+    public $perPage = 10;
+    public $search = '';
+    public $eventFilter = '';
+    public $logNameFilter = '';
 
-// // Get activities for a specific model
-// $postActivities = ActivityLog::forSubject($post)->get();
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'eventFilter' => ['except' => ''],
+        'logNameFilter' => ['except' => ''],
+    ];
+    public function index() {
+    $logs = ActivityLog::with(['subject', 'causer'])
+            ->when($this->search, function ($query) {
+                $query->where('description', 'like', '%'.$this->search.'%');
+            })
+            ->when($this->eventFilter, function ($query) {
+                $query->where('event', $this->eventFilter);
+            })
+            ->when($this->logNameFilter, function ($query) {
+                $query->where('log_name', $this->logNameFilter);
+            })
+            ->latest()
+            ->paginate($this->perPage);
 
-// // Filter by log name
-// $authActivities = ActivityLog::inLog('auth')->get();
+        return Inertia::render('ActivityLogs/Index', [
+            'logs' => $logs,
+            'eventTypes' => ActivityLog::distinct()->pluck('event'),
+            'logNames' => ActivityLog::distinct()->pluck('log_name'),
+            'filters' => request()->all('search', 'perPage'),
+        ]);
+    }
+
+    // function () {
+    //     return Inertia::render('ActivityLogs/Index', [
+    //         'logs' => \App\Models\ActivityLog::latest()->paginate(10)->withQueryString(),
+    //         'filters' => request()->all('search', 'perPage'),
+    //     ]);
+    // }
+
+
 }
