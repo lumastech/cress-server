@@ -105,6 +105,10 @@ class CenterController extends Controller
      */
     public function edit(Center $health_center)
     {
+        // if user role is not admin, redirect to dashboard
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'You do not have permission to view activity logs.');
+        }
         return Inertia::render('HealthCenters/Edit', [
             'center' => $health_center,
             'typeOptions' => ['hospital', 'clinic', 'pharmacy', 'laboratory', 'other'],
@@ -117,6 +121,10 @@ class CenterController extends Controller
      */
     public function update(Request $request, Center $health_center)
     {
+        // if user role is not admin, redirect to dashboard
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'You do not have permission to view activity logs.');
+        }
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:centers,email,'.$health_center->id,
@@ -141,6 +149,10 @@ class CenterController extends Controller
      */
     public function destroy(Center $health_center)
     {
+        // if user role is not admin, redirect to dashboard
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'You do not have permission to view activity logs.');
+        }
         $health_center->delete();
 
         return redirect()->route('health-centers.index')
