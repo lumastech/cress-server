@@ -20,6 +20,10 @@ class ActivityLogController extends Controller
         'logNameFilter' => ['except' => ''],
     ];
     public function index() {
+        // if user role is not admin, redirect to dashboard
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->back()->with('error', 'You do not have permission to view activity logs.');
+        }
     $logs = ActivityLog::with(['subject', 'causer'])
             ->when($this->search, function ($query) {
                 $query->where('description', 'like', '%'.$this->search.'%');
