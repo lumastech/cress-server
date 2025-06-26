@@ -42,6 +42,19 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'User status updated successfully.');
     }
 
+    public function updateRole(Request $request, string $id) {
+        // Validate the request
+        $request->validate([
+            'role' => ['required', 'string', 'in:admin,user,moderator'],
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->role = $request->input('role');
+        $user->save();
+
+        return redirect()->back()->with('success', 'User role updated successfully.');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
