@@ -30,7 +30,7 @@ class CheckUserStatus
             };
 
             return redirect()->route('login')->withErrors([
-                'username' => $message,
+                'email' => $message,
             ]);
         }
 
