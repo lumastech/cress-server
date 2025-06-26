@@ -1,7 +1,7 @@
 <template>
     <DashLayout>
 
-        <Head title="Health Centers" />
+        <Head title="Alerts" />
         <nav class="text-sm font-semibold mb-6" aria-label="Breadcrumb">
             <ol class="list-none p-0 inline-flex">
                 <li class="flex items-center text-blue-500">
