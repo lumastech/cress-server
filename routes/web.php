@@ -13,6 +13,7 @@ use App\Http\Controllers\CenterController;
 use App\Http\Controllers\IncidentController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\APKController;
+use App\Http\Controllers\ActivityLogController;
 
 Route::get('/', function () {
     return Inertia::render('Home', [
@@ -39,9 +40,10 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard',[DashboardController::class, "index"])->name('dashboard');
-    Route::resource('users', UserController::class);
     Route::post('users/{user}/status', [UserController::class, 'updateStatus'])->name('users.updateStatus');
+    Route::post('users/{user}/role', [UserController::class, 'updateRole'])->name('users.updateRole');
     Route::get('users/{filter}', [UserController::class, 'index']);
+    Route::resource('users', UserController::class);
 
     Route::resource('alerts', AlertController::class);
     Route::get('alerts/stats', [AlertController::class, 'stats']);
@@ -62,6 +64,9 @@ Route::middleware([
     Route::get('/api/danger-zones/stats', [MapController::class, 'dangerZonesStats']);
 
     Route::post('/upload-apk', [APKController::class, 'upload'])->name('apk.upload');
+
+    // admin/activity-logs
+    Route::get('/admin/activity-log', [ActivityLogController::class, 'index'])->name('activity-logs.index');
 
 
 });
