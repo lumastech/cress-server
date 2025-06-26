@@ -9,6 +9,10 @@ class APKController extends Controller
 {
     public function upload(Request $request)
     {
+        // if user role is not admin, redirect to dashboard
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'You do not have permission to view activity logs.');
+        }
         $request->validate([
             'name' => 'required|string|max:100',
             'apk_file' => 'required|file|mimes:apk,zip|max:101200', // 100MB max
