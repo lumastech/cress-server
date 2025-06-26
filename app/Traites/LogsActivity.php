@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+namespace App\Traites;
 
 use App\Models\ActivityLog;
 use Illuminate\Database\Eloquent\Model;
@@ -28,7 +28,7 @@ trait LogsActivity
             'subject_id' => $this->getKey(),
             'subject_type' => $this->getMorphClass(),
             'causer_id' => auth()->id(),
-            'causer_type' => auth()->user() ? auth()->user()->type() : null,
+            'causer_type' => auth()->user() ? get_class(auth()->user()) : null,
             'description' => $this->getActivityDescription($event),
             'event' => $event,
             'properties' => array_merge($properties, $this->getDirty()),
@@ -40,6 +40,6 @@ trait LogsActivity
     protected function getActivityDescription(string $event): string
     {
         $modelName = class_basename($this);
-        return "{$modelName} {$event}";
+        return "{$event} {$modelName}";
     }
 }

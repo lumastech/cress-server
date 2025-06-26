@@ -19,7 +19,7 @@
                                 {{ incident.type }}
                             </span>
                             <span class="text-sm text-gray-500">
-                                Reported {{ formatDate(incident.created_at) }} --{{ incident.created_at | timeAgo }}
+                                Reported {{ formatDate(incident.created_at) }}
                             </span>
                         </div>
                     </div>

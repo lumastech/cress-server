@@ -29,6 +29,19 @@ class UserController extends Controller
         ]);
     }
 
+    public function updateStatus(Request $request, string $id) {
+        // Validate the request
+        $request->validate([
+            'status' => ['required', 'string', 'in:active,inactive,pending,suspended,deleted,rejected'],
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->status = $request->input('status');
+        $user->save();
+
+        return redirect()->back()->with('success', 'User status updated successfully.');
+    }
+
     /**
      * Show the form for creating a new resource.
      */

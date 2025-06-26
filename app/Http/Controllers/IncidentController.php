@@ -48,6 +48,8 @@ class IncidentController extends Controller
         $incidents = $query->paginate(15)
             ->withQueryString();
 
+            dd($incidents->toArray());
+
         return Inertia::render('Incidents/Index', [
             'incidents' => $incidents,
             'filters' => $request->only(['search', 'status', 'type', 'date_from', 'date_to']),

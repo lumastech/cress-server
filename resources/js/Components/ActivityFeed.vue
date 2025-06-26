@@ -3,12 +3,13 @@
         <div class="flex items-center justify-between mb-4">
             <h3 class="text-lg font-semibold text-gray-700">Recent Activity</h3>
             <Link href="/admin/activity-log" class="text-sm text-blue-500 hover:underline">
-                View All
+            View All
             </Link>
         </div>
-        
+
         <ul class="space-y-3">
-            <li v-for="(activity, index) in activities" :key="index" class="flex items-start gap-3 p-2 hover:bg-gray-50 rounded">
+            <li v-for="(activity, index) in activities" :key="index"
+                class="flex items-start gap-3 p-2 hover:bg-gray-50 rounded">
                 <div class="flex-shrink-0 mt-1" :class="`text-${getActivityColor(activity)}-500`">
                     <i :class="activity.icon || 'fa-solid fa-circle-info'"></i>
                 </div>

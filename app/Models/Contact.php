@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traites\LogsActivity;
 
 class Contact extends Model
 {
     use HasFactory;
+    use LogsActivity;
+
 
     /**
      * The table associated with the model.

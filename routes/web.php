@@ -40,6 +40,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard',[DashboardController::class, "index"])->name('dashboard');
     Route::resource('users', UserController::class);
+    Route::post('users/{user}/status', [UserController::class, 'updateStatus'])->name('users.updateStatus');
     Route::get('users/{filter}', [UserController::class, 'index']);
 
     Route::resource('alerts', AlertController::class);

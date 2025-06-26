@@ -267,8 +267,8 @@ class MapController extends Controller
             }
         }
 
-        // Fallback to a reasonable default (e.g., center of the US)
-        return ['lat' => 39.8283, 'lng' => -98.5795];
+        // Fallback to a reasonable default (e.g., center of Lusaka)
+        return ['lat' => -15.3875, 'lng' => 28.3228];
     }
 
     protected function getCutoffDate(string $range): Carbon
